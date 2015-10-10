@@ -1,11 +1,11 @@
 #!/usr/bin/env php
 <?php
-
 require __DIR__.'/vendor/autoload.php';
 
 use Fenix440\Scaffold\Commands\TemplateCommand;
+use Fenix440\Scaffold\Contracts\ApplicationStates;
 use Symfony\Component\Console\Application;
 
-$application = new Application();
+$application = new Application(ApplicationStates::NAME,ApplicationStates::VERSION);
 $application->add(new TemplateCommand());
 $application->run();
