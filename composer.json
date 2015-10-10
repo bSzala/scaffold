@@ -1,6 +1,15 @@
 {
     "name": "fenix440/scaffold",
-    "description": "Package generates various scaffold templates. The goal is to speed up a package/project development",
+    "description": "Scaffolding utility tool for generating various templates/resources via a CLI. The goal is to speed up a package/project development",
+    "keywords": [
+        "scaffold",
+        "template",
+        "resource",
+        "utility"
+    ],
+    "homepage": "https://github.com/fenix440/scaffold",
+    "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Bartlomiej Szala",
@@ -17,5 +26,6 @@
         "symfony/finder": "^2.7",
         "symfony/filesystem": "^2.7"
     },
+    "bin": ["scaffold"],
     "minimum-stability": "stable"
 }
