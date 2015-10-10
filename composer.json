@@ -1,6 +1,6 @@
 {
-    "name": "fenix440/resource",
-    "description": "Package generates various resources. The goal is to speed up a package/project development",
+    "name": "fenix440/scaffold",
+    "description": "Package generates various scaffold templates. The goal is to speed up a package/project development",
     "authors": [
         {
             "name": "Bartlomiej Szala",
@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Fenix440\\Resource\\": "src/"
+            "Fenix440\\Scaffold\\": "src/"
         }
     },
     "require": {
