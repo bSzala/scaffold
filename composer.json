@@ -26,6 +26,9 @@
         "symfony/finder": "^2.7",
         "symfony/filesystem": "^2.7"
     },
+    "require-dev": {
+        "codeception/codeception": "^2.1"
+    },
     "bin": ["scaffold"],
     "minimum-stability": "stable"
 }

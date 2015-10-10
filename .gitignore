@@ -2,3 +2,4 @@
 composer.phar
 tests/_output/*
 .idea/*
+tests/_output/*
