@@ -1,5 +1,5 @@
-<?php namespace Fenix440\Resource\Commands;
-use Fenix440\Resource\Helpers\PathHelper;
+<?php namespace Fenix440\Scaffold\Commands;
+use Fenix440\Scaffold\Helpers\PathHelper;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Finder\Finder;
  *
  * A command for creating templates in given destination path
  *
- * @package Fenix440\Resource\Commands
+ * @package Fenix440\Scaffold\Commands
  * @author      Bartlomiej Szala <fenix440@gmail.com>
  */
 class TemplateCommand extends Command
