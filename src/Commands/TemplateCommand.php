@@ -1,5 +1,6 @@
 <?php namespace Fenix440\Scaffold\Commands;
 use Fenix440\Scaffold\Helpers\PathHelper;
+use Fenix440\Scaffold\Helpers\TemplateHelper;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,7 +12,7 @@ use Symfony\Component\Finder\Finder;
 /**
  * Class TemplateCommand
  *
- * A command for creating templates in given destination path
+ * A command for creating templates in given target destination
  *
  * @package Fenix440\Scaffold\Commands
  * @author      Bartlomiej Szala <fenix440@gmail.com>
@@ -50,27 +51,32 @@ class TemplateCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        //@todo Fetch awailable template list
-        $templateList = $this->formatTemplateList($this->getTemplateList());
+        $templateList = $this->getTemplatesList($this->findTemplates());
+        $prettyTemplateList = $this->formatTemplatesList($templateList);
         $helper = $this->getHelper('question');
         $question = new ChoiceQuestion(
-            'What kind of template, You would like to install?',
-                $templateList
+            'What kind of template, You would like to create?',
+                $prettyTemplateList
         );
         $question->setErrorMessage('Template %s is invalid');
         $selectedTemplate = $helper->ask($input,$output,$question);
 
+        // find a key for selected template
+        $key = array_search($selectedTemplate,$prettyTemplateList);
+        $templateDirectoryName = $templateList[$key];
+
         $targetPath = $input->getArgument(self::ARGUMENT_PATH_NAME);
 
-        $this->createTemplate($selectedTemplate,$targetPath);
+        $this->createTemplate($templateDirectoryName,$targetPath);
         $output->writeln(sprintf('<comment>%s</comment> created into <info>%s</info>',$selectedTemplate,$targetPath));
     }
 
     /**
+     * Find available templates
      *
      * @return Finder|\Symfony\Component\Finder\SplFileInfo[]
      */
-    protected function getTemplateList()
+    protected function findTemplates()
     {
         $finder = new Finder();
         return $finder->directories()->in(PathHelper::getTemplatesPath())->depth(0);
@@ -78,12 +84,12 @@ class TemplateCommand extends Command
     }
 
     /**
-     * Formats template list
+     * Get template list
      *
      * @param Finder $directoryList A finder directory list
      * @return array A list of available template names
      */
-    protected function formatTemplateList(Finder $directoryList)
+    protected function getTemplatesList(Finder $directoryList)
     {
         $list=[];
         foreach($directoryList as $directory){
@@ -91,6 +97,19 @@ class TemplateCommand extends Command
             $list[] = $directory->getFilename();
         }
         return $list;
+    }
+
+    /**
+     * Format template list
+     *
+     * @param array $list
+     * @return array
+     */
+    protected function formatTemplatesList(array $list)
+    {
+        return array_map(function($name){
+            return TemplateHelper::prettyName($name);
+        },$list);
     }
 
     /**
