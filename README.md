@@ -42,3 +42,6 @@ program will generate the entire template (folder structure) in Your current dir
 scaffold  template path_to_target_directory
 ```
 
+## License ##
+
+Scaffold is licensed under the MIT license.
