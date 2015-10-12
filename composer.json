@@ -32,6 +32,8 @@
         "ofbeaton/console-tester": "^1.1",
         "mockery/mockery": "^0.9.4"
     },
-    "bin": ["scaffold"],
+    "bin": [
+        "scaffold"
+    ],
     "minimum-stability": "stable"
 }
