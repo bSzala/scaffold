@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fenix440/scaffold.svg?branch=master)](https://travis-ci.org/fenix440/scaffold)
+
 # scaffold
 Scaffolding utility tool for generating various templates/resources via a CLI. The goal is to speed up a package/project development
 
