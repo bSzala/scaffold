@@ -1,5 +1,5 @@
 {
-    "name": "fenix440/scaffold",
+    "name": "bszala/scaffold",
     "description": "Scaffolding utility tool for generating various templates/resources via a CLI. The goal is to speed up a package/project development",
     "keywords": [
         "scaffold",
@@ -7,7 +7,7 @@
         "resource",
         "utility"
     ],
-    "homepage": "https://github.com/fenix440/scaffold",
+    "homepage": "https://github.com/bszala/scaffold",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -18,14 +18,15 @@
     ],
     "autoload": {
         "psr-4": {
-            "Fenix440\\Scaffold\\": "src/"
+            "BSzala\\Scaffold\\": "src/"
         }
     },
     "require": {
         "php": ">=5.5.9",
         "symfony/console": "^2.7",
         "symfony/finder": "^2.7",
-        "symfony/filesystem": "^2.7"
+        "symfony/filesystem": "^2.7",
+        "vipsoft/unzip": "^1.2"
     },
     "require-dev": {
         "codeception/codeception": "^2.1",

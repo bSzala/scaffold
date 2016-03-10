@@ -1,6 +1,6 @@
-<?php namespace Fenix440\Scaffold\Commands;
-use Fenix440\Scaffold\Helpers\PathHelper;
-use Fenix440\Scaffold\Helpers\TemplateHelper;
+<?php namespace BSzala\Scaffold\Commands;
+use BSzala\Scaffold\Helpers\PathHelper;
+use BSzala\Scaffold\Helpers\TemplateHelper;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,7 +14,7 @@ use Symfony\Component\Finder\Finder;
  *
  * A command for creating templates in given target destination
  *
- * @package Fenix440\Scaffold\Commands
+ * @package BSzala\Scaffold\Commands
  * @author      Bartlomiej Szala <fenix440@gmail.com>
  */
 class TemplateCommand extends Command

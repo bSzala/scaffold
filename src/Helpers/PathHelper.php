@@ -1,11 +1,11 @@
-<?php namespace Fenix440\Scaffold\Helpers;
+<?php namespace BSzala\Scaffold\Helpers;
 
 /**
  * Class PathHelper
  *
  * Utility for obtaining package paths
  *
- * @package Fenix440\Scaffold\Helpers
+ * @package BSzala\Scaffold\Helpers
  * @author      Bartlomiej Szala <fenix440@gmail.com>
  */
 class PathHelper

@@ -1,10 +1,10 @@
 <?php
-use Fenix440\Scaffold\Helpers\TemplateHelper;
+use BSzala\Scaffold\Helpers\TemplateHelper;
 
 /**
  * Class TemplateHelperTest
  *
- * @coversDefaultClass Fenix440\Scaffold\Helpers\TemplateHelper
+ * @coversDefaultClass BSzala\Scaffold\Helpers\TemplateHelper
  * @author Bartlomiej Szala <fenix440@gmail.com>
  */
 class TemplateHelperTest extends \Codeception\TestCase\Test

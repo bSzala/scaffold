@@ -1,7 +1,7 @@
 <?php
 use Codeception\Configuration;
 use Codeception\Util\Debug;
-use Fenix440\Scaffold\Commands\TemplateCommand;
+use BSzala\Scaffold\Commands\TemplateCommand;
 use Ofbeaton\Console\Tester\QuestionTester;
 use Ofbeaton\Console\Tester\UnhandledQuestionException;
 use Symfony\Component\Console\Question\Question;
@@ -10,7 +10,7 @@ use Symfony\Component\Finder\Finder;
 /**
  * Class TemplateCommandTest
  *
- * @coversDefaultClass Fenix440\Scaffold\Commands\TemplateCommand
+ * @coversDefaultClass BSzala\Scaffold\Commands\TemplateCommand
  * @author Bartlomiej Szala <fenix440@gmail.com>
  */
 class TemplateCommandTest extends \Codeception\TestCase\Test

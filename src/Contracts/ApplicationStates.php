@@ -1,4 +1,4 @@
-<?php namespace Fenix440\Scaffold\Contracts;
+<?php namespace BSzala\Scaffold\Contracts;
 
 /**
  * Interface ApplicationStates
@@ -7,7 +7,7 @@
  * like: version, name etc.
  *
  * @author      Bartlomiej Szala <fenix440@gmail.com>
- * @package      Fenix440\Scaffold\Contracts
+ * @package      BSzala\Scaffold\Contracts
  */
 interface ApplicationStates
 {

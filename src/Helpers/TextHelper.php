@@ -1,11 +1,11 @@
-<?php namespace Fenix440\Scaffold\Helpers;
+<?php namespace BSzala\Scaffold\Helpers;
 
 /**
  * Class TextHelper
  *
  * Utility for formatting text
  *
- * @package Fenix440\Scaffold\Helpers
+ * @package BSzala\Scaffold\Helpers
  * @author      Bartlomiej Szala <fenix440@gmail.com>
  */
 class TextHelper

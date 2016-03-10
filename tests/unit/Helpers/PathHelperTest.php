@@ -1,10 +1,10 @@
 <?php
-use Fenix440\Scaffold\Helpers\PathHelper;
+use BSzala\Scaffold\Helpers\PathHelper;
 
 /**
  * Class PathHelperTest
  *
- * @coversDefaultClass Fenix440\Scaffold\Helpers\PathHelper
+ * @coversDefaultClass BSzala\Scaffold\Helpers\PathHelper
  * @author Bartlomiej Szala <fenix440@gmail.com>
  */
 class PathHelperTest extends \Codeception\TestCase\Test
