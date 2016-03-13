@@ -30,6 +30,16 @@ class PathHelper
     {
         return self::getBasePath().'/templates';
     }
+
+    /**
+     * Get VIM configuration path
+     *
+     * @return string
+     */
+    public static function getVimConfigPath()
+    {
+        return self::getBasePath().'/vimconfig';
+    }
 }
 
  
