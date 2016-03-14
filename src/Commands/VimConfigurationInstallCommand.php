@@ -53,9 +53,7 @@ class VimConfigurationInstallCommand extends BaseCommand
     {
         $targetDirectory = self::TARGET_DEFAULT_DIRECTORY;
 
-        $exists = false;
-        if ($this->vimConfigurationExists($targetDirectory))
-            $exists = true;
+        $exists = $this->vimConfigurationExists($targetDirectory);
 
         if ($exists) {
             $helper = $this->getHelper('question');
@@ -74,7 +72,7 @@ class VimConfigurationInstallCommand extends BaseCommand
             return;
         }else{
             $output->writeln('<info>Started Installing!</info>');
-            $this->recurseCopy(PathHelper::getVimConfigPath(), $targetDirectory,true);
+            $this->recurseCopy(PathHelper::getVimConfigPath(), $targetDirectory);
             $this->cloneVimPluginManager();
             $this->installVimPlugins();
         }
