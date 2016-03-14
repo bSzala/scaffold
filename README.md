@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/fenix440/scaffold.svg?branch=master)](https://travis-ci.org/fenix440/scaffold)
-[![Latest Stable Version](https://poser.pugx.org/fenix440/scaffold/v/stable)](https://packagist.org/packages/fenix440/scaffold)
-[![License](https://poser.pugx.org/fenix440/scaffold/license)](https://packagist.org/packages/fenix440/scaffold)
+[![Latest Stable Version](https://poser.pugx.org/bszala/scaffold/v/stable)](https://packagist.org/packages/bszala/scaffold)
+[![License](https://poser.pugx.org/bszala/scaffold/license)](https://packagist.org/packages/bszala/scaffold)
 
 # scaffold
 Scaffolding utility tool for generating various templates/resources via a CLI. The goal is to speed up a package/project development
