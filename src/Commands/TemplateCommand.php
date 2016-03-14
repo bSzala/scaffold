@@ -1,12 +1,10 @@
 <?php namespace BSzala\Scaffold\Commands;
 use BSzala\Scaffold\Helpers\PathHelper;
 use BSzala\Scaffold\Helpers\TemplateHelper;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -17,7 +15,7 @@ use Symfony\Component\Finder\Finder;
  * @package BSzala\Scaffold\Commands
  * @author      Bartlomiej Szala <fenix440@gmail.com>
  */
-class TemplateCommand extends Command
+class TemplateCommand extends BaseCommand
 {
     /**
      * Command name
@@ -121,9 +119,7 @@ class TemplateCommand extends Command
     protected function createTemplate($templateName,$targetPath)
     {
         $templatePath = PathHelper::getTemplatesPath().'/'.$templateName;
-
-        $fs = new Filesystem();
-        $fs->mirror($templatePath,$targetPath);
+        $this->mirror($templatePath,$targetPath);
     }
 }
 
