@@ -58,8 +58,6 @@ class VimConfigurationInstallCommand extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $targetDirectory = $input->getArgument(self::ARGUMENT_TARGET_DIR_NAME);
-
-        $output->writeln('<info>Started Installing!</info>');
         //@todo check if vim configuration already exists
         $exists = true;
 
@@ -67,16 +65,17 @@ class VimConfigurationInstallCommand extends BaseCommand
             if($exists){
                 $helper = $this->getHelper('question');
                 $question = new ConfirmationQuestion(
-                    'It appears, that vim configuration already exists in You HOME directory should I override this configuration?',
+                    '<info>It appears, that vim configuration already exists in You HOME directory, should I override this configuration?</info> <comment>[Y/N=default]</comment>',
                     false
                 );
                 if(!$helper->ask($input,$output,$question)){
-                    $output->writeln(sprintf('Install vim configuration has been canceled! '));
+                    $output->writeln(sprintf('Installation has been canceled! '));
                     return;
                 }
             }
         }
 
+        $output->writeln('<info>Started Installing!</info>');
         $this->mirror(PathHelper::getVimConfigPath(),self::TARGET_DEFAULT_DIRECTORY);
         $output->writeln(sprintf('<comment>%s</comment> installed into <info>%s</info>','Vim configuration','Your home directory'));
     }
