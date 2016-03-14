@@ -18,12 +18,6 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
  */
 class VimConfigurationInstallCommand extends BaseCommand
 {
-
-    /**
-     * Target directory for vim configuration
-     */
-    const TARGET_DEFAULT_DIRECTORY = '~/';
-
     /**
      * Vim plugin manager
      */
@@ -49,7 +43,7 @@ class VimConfigurationInstallCommand extends BaseCommand
                 self::TARGET_DIR_ARGUMENT,
                 InputArgument::OPTIONAL,
                 'Specify a target directory to install vim configuration. By default User home dir will be used',
-                self::TARGET_DEFAULT_DIRECTORY
+                getcwd()
             );
     }
 
@@ -61,12 +55,6 @@ class VimConfigurationInstallCommand extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $targetDirectory = $input->getArgument(self::TARGET_DIR_ARGUMENT);
-        if($targetDirectory == self::TARGET_DEFAULT_DIRECTORY)
-            $targetDirectory = $this->getUserHomeDirectory();
-
-        if(empty($targetDirectory))
-            $targetDirectory= self::TARGET_DEFAULT_DIRECTORY;
-
         $exists = $this->vimConfigurationExists($targetDirectory);
 
         if ($exists) {
@@ -89,7 +77,7 @@ class VimConfigurationInstallCommand extends BaseCommand
             $this->mirror(PathHelper::getVimConfigPath(), $targetDirectory,$exists);
             $this->cloneVimPluginManager($targetDirectory);
         }
-        $output->writeln(sprintf('<comment>%s</comment> installed into <info>%s</info>', 'Vim configuration', 'Your home directory'));
+        $output->writeln(sprintf('<comment>%s</comment> installed into directory: <info>%s</info>', 'Vim configuration', $targetDirectory));
     }
 
     /**

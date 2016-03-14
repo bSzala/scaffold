@@ -35,29 +35,6 @@ abstract class BaseCommand extends Command
         $fs->mirror($sourcePath,$targetPath,null,['override' => $override]);
     }
 
-    /**
-     * Recursively copy all files from source directory into destination directory
-     *
-     * @param string $src Source directory
-     * @param string $dst Destination directory
-     *
-     * @return void
-     */
-    function recurseCopy($src,$dst) {
-        $dir = opendir($src);
-        @mkdir($dst);
-        while(false !== ( $file = readdir($dir)) ) {
-            if (( $file != '.' ) && ( $file != '..' )) {
-                if ( is_dir($src . '/' . $file) ) {
-                    $this->recurseCopy($src . '/' . $file,$dst . '/' . $file);
-                }
-                else {
-                    copy($src . '/' . $file,$dst . '/' . $file);
-                }
-            }
-        }
-        closedir($dir);
-    }
 
     /**
      * Copy all files form given directory into another one
@@ -122,14 +99,5 @@ abstract class BaseCommand extends Command
         echo ! empty($matches[0]) ? 'installed' : 'nope';
     }
 
-    /**
-     * Get absolute path to user home directory
-     *
-     * @return string
-     */
-    protected function getUserHomeDirectory()
-    {
-        return  exec('cd ~ && pwd');
-    }
 
 }
