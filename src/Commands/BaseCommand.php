@@ -32,4 +32,17 @@ abstract class BaseCommand extends Command
         $fs->mirror($sourcePath,$targetPath,null,['override' => $override]);
     }
 
+    /**
+     * Checks the existence of files or directories.
+     *
+     * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to check
+     *
+     * @return bool true if the file exists, false otherwise
+     */
+    public function exists($files)
+    {
+        $fs = new Filesystem();
+        return $fs->exists($files);
+    }
+
 }

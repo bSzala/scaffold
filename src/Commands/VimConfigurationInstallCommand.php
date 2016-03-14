@@ -5,7 +5,6 @@ use BSzala\Scaffold\Helpers\PathHelper;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
@@ -58,26 +57,39 @@ class VimConfigurationInstallCommand extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $targetDirectory = $input->getArgument(self::ARGUMENT_TARGET_DIR_NAME);
-        //@todo check if vim configuration already exists
-        $exists = true;
 
-        if($targetDirectory === self::TARGET_DEFAULT_DIRECTORY){
-            if($exists){
-                $helper = $this->getHelper('question');
-                $question = new ConfirmationQuestion(
-                    '<info>It appears, that vim configuration already exists in You HOME directory, should I override this configuration?</info> <comment>[Y/N=default]</comment>',
-                    false
-                );
-                if(!$helper->ask($input,$output,$question)){
-                    $output->writeln(sprintf('Installation has been canceled! '));
-                    return;
-                }
+        $exists = false;
+        if ($this->isVimConfigurationExists($targetDirectory))
+            $exists = true;
+
+        if ($exists) {
+            $helper = $this->getHelper('question');
+            $question = new ConfirmationQuestion(
+                sprintf('<info>It appears, that vim configuration already exists in "%s" directory, should I override this configuration?</info> <comment>[Y/N=default]</comment>',$targetDirectory),
+                false
+            );
+            if (!$helper->ask($input, $output, $question)) {
+                $output->writeln(sprintf('Installation has been canceled! '));
+                return;
             }
         }
 
         $output->writeln('<info>Started Installing!</info>');
-        $this->mirror(PathHelper::getVimConfigPath(),self::TARGET_DEFAULT_DIRECTORY);
-        $output->writeln(sprintf('<comment>%s</comment> installed into <info>%s</info>','Vim configuration','Your home directory'));
+        $this->mirror(PathHelper::getVimConfigPath(), $targetDirectory);
+        $output->writeln(sprintf('<comment>%s</comment> installed into <info>%s</info>', 'Vim configuration', 'Your home directory'));
+    }
+
+    /**
+     * Checks if vim configuration already exists in home user directory
+     *
+     * @param string $directory Directory to check
+     * @return bool
+     */
+    protected function isVimConfigurationExists($directory)
+    {
+        if ($this->exists($directory . '.vimrc') || $this->exists($directory . '.vim'))
+            return true;
+        return false;
     }
 
 
