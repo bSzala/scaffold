@@ -88,7 +88,7 @@ class VimConfigurationInstallCommand extends BaseCommand
             $output->writeln('<info>Started Installing!</info>');
             $this->mirror(PathHelper::getVimConfigPath(), $targetDirectory,$exists);
             $this->cloneVimPluginManager($targetDirectory);
-            //$this->installVimPlugins();
+            
         }
         $output->writeln(sprintf('<comment>%s</comment> installed into <info>%s</info>', 'Vim configuration', 'Your home directory'));
     }

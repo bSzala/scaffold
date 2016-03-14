@@ -7,6 +7,7 @@ if (file_exists(__DIR__.'/../../autoload.php')) {
     require __DIR__.'/vendor/autoload.php';
 }
 
+use BSzala\Scaffold\Commands\InstallVimPluginsCommand;
 use BSzala\Scaffold\Commands\TemplateCommand;
 use BSzala\Scaffold\Commands\VimConfigurationInstallCommand;
 use BSzala\Scaffold\Contracts\ApplicationStates;
@@ -15,6 +16,7 @@ use Symfony\Component\Console\Application;
 $application = new Application(ApplicationStates::NAME,ApplicationStates::VERSION);
 $application->add(new TemplateCommand());
 $application->add(new VimConfigurationInstallCommand());
+$application->add(new InstallVimPluginsCommand());
 $application->run();
 
 
