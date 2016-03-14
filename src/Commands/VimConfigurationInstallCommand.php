@@ -23,15 +23,16 @@ class VimConfigurationInstallCommand extends BaseCommand
      * Target directory for vim configuration
      */
     const TARGET_DEFAULT_DIRECTORY = '~/';
+
+    /**
+     * Vim plugin manager
+     */
+    const VIM_VUNDLE_GITHUB_URL = 'https://github.com/VundleVim/Vundle.vim.git';
     /**
      * Command name
      */
     const COMMAND_NAME = 'vim:install';
 
-    /**
-     * Argument name
-     */
-    const ARGUMENT_TARGET_DIR_NAME = 'target_dir';
 
     /**
      * @inheritdoc
@@ -41,12 +42,6 @@ class VimConfigurationInstallCommand extends BaseCommand
         $this
             ->setName(self::COMMAND_NAME)
             ->setDescription("Install BSzala Vim Configuration into Your home directory.")
-            ->addArgument(
-                self::ARGUMENT_TARGET_DIR_NAME,
-                InputArgument::OPTIONAL,
-                'Specify a target directory, where template should be installed. By default Vim Configuration will be installed in You home directory',
-                self::TARGET_DEFAULT_DIRECTORY
-            );
     }
 
     /**
@@ -56,7 +51,7 @@ class VimConfigurationInstallCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $targetDirectory = $input->getArgument(self::ARGUMENT_TARGET_DIR_NAME);
+        $targetDirectory = self::TARGET_DEFAULT_DIRECTORY;
 
         $exists = false;
         if ($this->vimConfigurationExists($targetDirectory))
@@ -74,8 +69,15 @@ class VimConfigurationInstallCommand extends BaseCommand
             }
         }
 
-        $output->writeln('<info>Started Installing!</info>');
-        $this->mirror(PathHelper::getVimConfigPath(), $targetDirectory,$exists);
+        if(!$this->hasGit()){
+            $output->writeln('<comment>Git is not installed on Your OS. Installation failed!</comment>');
+            return;
+        }else{
+            $output->writeln('<info>Started Installing!</info>');
+            $this->mirror(PathHelper::getVimConfigPath(), $targetDirectory,$exists);
+            $this->cloneVimPluginManager()
+            $this->installVimPlugins();
+        }
         $output->writeln(sprintf('<comment>%s</comment> installed into <info>%s</info>', 'Vim configuration', 'Your home directory'));
     }
 
@@ -91,6 +93,17 @@ class VimConfigurationInstallCommand extends BaseCommand
             return true;
         return false;
     }
+
+    /**
+     * Clone vim plugin manager
+     *
+     * @return bool True if success, otherwise false
+     */
+    protected function cloneVimPluginManager()
+    {
+        exec('git clone  '.self::VIM_VUNDLE_GITHUB_URL.' ~/.vim/bundle/Vundle.vim');
+    }
+
 
 
 }

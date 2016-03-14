@@ -45,4 +45,33 @@ abstract class BaseCommand extends Command
         return $fs->exists($files);
     }
 
+    /**
+     * Install vim plugins from command line
+     */
+    protected function installVimPlugins()
+    {
+        exec('vim +PluginInstall +qall');
+    }
+
+    /**
+     * Checks if git is installed
+     *
+     * @return bool|string
+     */
+    protected function hasGit()
+    {
+        exec('which git', $output);
+
+        $git = file_exists($line = trim(current($output))) ? $line : 'git';
+
+        unset($output);
+
+        exec($git . ' --version', $output);
+
+        preg_match('#^(git version)#', current($output), $matches);
+
+        return ! empty($matches[0]) ? $git : false;
+        echo ! empty($matches[0]) ? 'installed' : 'nope';
+    }
+
 }

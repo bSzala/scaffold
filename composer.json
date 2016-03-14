@@ -25,8 +25,7 @@
         "php": ">=5.5.9",
         "symfony/console": "^2.7",
         "symfony/finder": "^2.7",
-        "symfony/filesystem": "^2.7",
-        "vipsoft/unzip": "^1.2"
+        "symfony/filesystem": "^2.7"
     },
     "require-dev": {
         "codeception/codeception": "^2.1",
