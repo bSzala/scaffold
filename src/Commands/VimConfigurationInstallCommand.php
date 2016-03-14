@@ -89,6 +89,8 @@ class VimConfigurationInstallCommand extends BaseCommand
      */
     protected function vimConfigurationExists($directory)
     {
+        $directory = rtrim($directory, '/') . '/';
+        
         if ($this->exists($directory . '.vimrc') || $this->exists($directory . '.vim'))
             return true;
         return false;
