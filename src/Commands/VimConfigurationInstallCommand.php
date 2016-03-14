@@ -51,7 +51,9 @@ class VimConfigurationInstallCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $targetDirectory = self::TARGET_DEFAULT_DIRECTORY;
+        $targetDirectory = $this->getUserHomeDirectory();
+        if(empty($targetDirectory))
+            $targetDirectory= self::TARGET_DEFAULT_DIRECTORY;
 
         $exists = $this->vimConfigurationExists($targetDirectory);
 
@@ -72,7 +74,7 @@ class VimConfigurationInstallCommand extends BaseCommand
             return;
         }else{
             $output->writeln('<info>Started Installing!</info>');
-            $this->recurseCopy(PathHelper::getVimConfigPath(), $targetDirectory);
+            $this->mirror(PathHelper::getVimConfigPath(), $targetDirectory,true);
             $this->cloneVimPluginManager();
             $this->installVimPlugins();
         }

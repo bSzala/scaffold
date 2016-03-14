@@ -122,4 +122,14 @@ abstract class BaseCommand extends Command
         echo ! empty($matches[0]) ? 'installed' : 'nope';
     }
 
+    /**
+     * Get absolute path to user home directory
+     *
+     * @return string
+     */
+    protected function getUserHomeDirectory()
+    {
+        return  exec('cd ~ && pwd');
+    }
+
 }
