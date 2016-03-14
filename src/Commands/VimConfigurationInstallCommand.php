@@ -41,7 +41,7 @@ class VimConfigurationInstallCommand extends BaseCommand
     {
         $this
             ->setName(self::COMMAND_NAME)
-            ->setDescription("Install BSzala Vim Configuration into Your home directory.")
+            ->setDescription("Install BSzala Vim Configuration into Your home directory.");
     }
 
     /**
