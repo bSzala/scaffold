@@ -59,7 +59,7 @@ class VimConfigurationInstallCommand extends BaseCommand
         $targetDirectory = $input->getArgument(self::ARGUMENT_TARGET_DIR_NAME);
 
         $exists = false;
-        if ($this->isVimConfigurationExists($targetDirectory))
+        if ($this->vimConfigurationExists($targetDirectory))
             $exists = true;
 
         if ($exists) {
@@ -75,7 +75,7 @@ class VimConfigurationInstallCommand extends BaseCommand
         }
 
         $output->writeln('<info>Started Installing!</info>');
-        $this->mirror(PathHelper::getVimConfigPath(), $targetDirectory);
+        $this->mirror(PathHelper::getVimConfigPath(), $targetDirectory,$exists);
         $output->writeln(sprintf('<comment>%s</comment> installed into <info>%s</info>', 'Vim configuration', 'Your home directory'));
     }
 
@@ -85,7 +85,7 @@ class VimConfigurationInstallCommand extends BaseCommand
      * @param string $directory Directory to check
      * @return bool
      */
-    protected function isVimConfigurationExists($directory)
+    protected function vimConfigurationExists($directory)
     {
         if ($this->exists($directory . '.vimrc') || $this->exists($directory . '.vim'))
             return true;
