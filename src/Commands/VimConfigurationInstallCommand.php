@@ -76,7 +76,7 @@ class VimConfigurationInstallCommand extends BaseCommand
                 }
             }
         }
-        
+
         $this->mirror(PathHelper::getVimConfigPath(),self::TARGET_DEFAULT_DIRECTORY);
         $output->writeln(sprintf('<comment>%s</comment> installed into <info>%s</info>','Vim configuration','Your home directory'));
     }
