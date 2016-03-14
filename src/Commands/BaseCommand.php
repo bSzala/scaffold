@@ -1,10 +1,10 @@
 <?php
 namespace BSzala\Scaffold\Commands;
 
+use FilesystemIterator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 
 /**
@@ -32,10 +32,10 @@ abstract class BaseCommand extends Command
     protected function mirror($sourcePath, $targetPath,$override=false)
     {
         $fs = new Filesystem();
-        $iterator = new RecursiveDirectoryIterator($sourcePath,\FilesystemIterator::FOLLOW_SYMLINKS);
-
+        $iterator = new RecursiveDirectoryIterator($sourcePath, FilesystemIterator::KEY_AS_PATHNAME | FilesystemIterator::CURRENT_AS_FILEINFO);
         $fs->mirror($sourcePath,$targetPath,$iterator,['override' => $override]);
     }
+
 
     /**
      * Copy all files form given directory into another one
