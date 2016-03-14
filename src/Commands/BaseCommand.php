@@ -32,9 +32,7 @@ abstract class BaseCommand extends Command
     protected function mirror($sourcePath, $targetPath,$override=false)
     {
         $fs = new Filesystem();
-        $iterator = new RecursiveDirectoryIterator($sourcePath, FilesystemIterator::KEY_AS_PATHNAME | FilesystemIterator::CURRENT_AS_FILEINFO);
-
-        $fs->mirror($sourcePath,$targetPath,$iterator,['override' => $override]);
+        $fs->mirror($sourcePath,$targetPath,null,['override' => $override]);
     }
 
     /**
