@@ -2,6 +2,7 @@
 namespace BSzala\Scaffold\Commands;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -30,6 +31,27 @@ abstract class BaseCommand extends Command
     {
         $fs = new Filesystem();
         $fs->mirror($sourcePath,$targetPath,null,['override' => $override]);
+    }
+
+    /**
+     * Copy all files form given directory into another one
+     *
+     * @param string $sourcePath Source full path
+     * @param string $targetPath Target full path
+     * @param bool $override If Yes than all existing files will be replaced
+     * @return bool
+     */
+    protected function copy($sourcePath, $targetPath, $override = false)
+    {
+        $fs = new Filesystem();
+        try{
+            $fs->copy($sourcePath,$targetPath,$override);
+        }catch(IOException $ex){
+            // copy has failed
+            return false;
+        }
+        return true;
+
     }
 
     /**
