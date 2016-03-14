@@ -4,6 +4,8 @@ namespace BSzala\Scaffold\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 
 /**
  * Class Base Command
@@ -30,7 +32,9 @@ abstract class BaseCommand extends Command
     protected function mirror($sourcePath, $targetPath,$override=false)
     {
         $fs = new Filesystem();
-        $fs->mirror($sourcePath,$targetPath,null,['override' => $override]);
+        $iterator = new RecursiveDirectoryIterator($sourcePath);
+
+        $fs->mirror($sourcePath,$targetPath,$iterator,['override' => $override]);
     }
 
     /**
