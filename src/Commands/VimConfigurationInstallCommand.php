@@ -38,11 +38,11 @@ class VimConfigurationInstallCommand extends BaseCommand
     {
         $this
             ->setName(self::COMMAND_NAME)
-            ->setDescription("Install BSzala Vim Configuration into Your home directory.")
+            ->setDescription("Install BSzala Vim Configuration.")
             ->addArgument(
                 self::TARGET_DIR_ARGUMENT,
                 InputArgument::OPTIONAL,
-                'Specify a target directory to install vim configuration. By default User home dir will be used',
+                'Specify a target directory to install my own vim configuration. By default configuration will be installed in current directory',
                 getcwd()
             );
     }
