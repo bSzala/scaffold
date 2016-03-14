@@ -13,7 +13,7 @@ In most cases this Utility tool should be used when your start developing a new 
 
 ```
 
-composer require fenix440/scaffold 
+composer require bszala/scaffold 
 ```
 
 This package uses [composer](https://getcomposer.org/). If you do not know what that is or how it works, I recommend that you read a little about, before attempting to use this package.
