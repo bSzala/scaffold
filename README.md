@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/bSzala/scaffold.svg?branch=master)](https://travis-ci.org/bSzala/scaffold)
 [![Latest Stable Version](https://poser.pugx.org/bszala/scaffold/v/stable)](https://packagist.org/packages/bszala/scaffold)
 [![License](https://poser.pugx.org/bszala/scaffold/license)](https://packagist.org/packages/bszala/scaffold)
 
