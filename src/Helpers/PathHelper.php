@@ -40,6 +40,16 @@ class PathHelper
     {
         return self::getBasePath().'/vimconfig';
     }
+
+    /**
+     * Get aliases path
+     *
+     * @return string
+     */
+    public static function getAliasesPath()
+    {
+        return self::getBasePath().'/aliases';
+    }
 }
 
  
