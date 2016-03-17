@@ -36,6 +36,7 @@ class PathHelperTest extends \Codeception\TestCase\Test
             [PathHelper::getBasePath(),'Base Path'],
             [PathHelper::getTemplatesPath(),'Template Path'],
             [PathHelper::getAliasesPath(),'Aliases Path'],
+            [PathHelper::getGeneralAliasesPath(),'General Aliases Path']
         ];
     }
 
@@ -57,4 +58,6 @@ class PathHelperTest extends \Codeception\TestCase\Test
     {
         $this->assertTrue(file_exists($path),sprintf('%s (%s) does not exist or is not accessible',$name,$path));
     }
+
+
 }

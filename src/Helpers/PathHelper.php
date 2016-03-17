@@ -50,6 +50,17 @@ class PathHelper
     {
         return self::getBasePath().'/aliases';
     }
+
+    /**
+     * Get general aliases path
+     *
+     * @return string
+     */
+    public static function getGeneralAliasesPath()
+    {
+        return self::getAliasesPath().'/general';
+    }
+
 }
 
  

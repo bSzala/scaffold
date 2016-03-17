@@ -1,6 +1,10 @@
 <?php
 namespace BSzala\Scaffold\Commands;
 
+use BSzala\Scaffold\Helpers\PathHelper;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
  * Class InstallGeneralAliasesCommand
  *
@@ -8,7 +12,7 @@ namespace BSzala\Scaffold\Commands;
  *
  * @package BSzala\Scaffold\Commands
  */
-class InstallGeneralAliasesCommand extends BaseCommand
+class InstallGeneralAliasesCommand extends AliasesCommand
 {
 
 
@@ -24,7 +28,7 @@ class InstallGeneralAliasesCommand extends BaseCommand
     {
         $this
             ->setName(self::COMMAND_NAME)
-            ->setDescription("It will install a general, most used aliases.");
+            ->setDescription("Install a general, most used aliases.");
     }
 
     /**
@@ -35,7 +39,13 @@ class InstallGeneralAliasesCommand extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('<info>Started Installing!</info>');
-       //@todo
+        if(!$this->createUserAliasesDirectory()){
+            $output->writeln('<comment>Failure</comment> Aliases directory cannot be created. Installation failed.');
+            return;
+        }
+
+        $this->mirror(PathHelper::getGeneralAliasesPath(),$this->getUserAliasesPath());
+
 
         $output->writeln(sprintf('<comment>%s</comment> has been installed.', 'General aliases'));
     }

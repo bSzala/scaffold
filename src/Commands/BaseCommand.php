@@ -19,6 +19,17 @@ abstract class BaseCommand extends Command
 {
 
     /**
+     * Filesystem 
+     * 
+     * @var Filesystem
+     */
+    protected $filesystem;
+    
+    public function __constructor()
+    {
+        $this->filesystem=new Filesystem();
+    }
+    /**
      * Mirror Files
      *
      * Copy all files from given directory into another one
@@ -31,8 +42,7 @@ abstract class BaseCommand extends Command
      */
     protected function mirror($sourcePath, $targetPath,$override=false)
     {
-        $fs = new Filesystem();
-        $fs->mirror($sourcePath,$targetPath,null,['override' => $override]);
+        $this->filesystem->mirror($sourcePath,$targetPath,null,['override' => $override]);
     }
 
 
@@ -46,9 +56,8 @@ abstract class BaseCommand extends Command
      */
     protected function copy($sourcePath, $targetPath, $override = false)
     {
-        $fs = new Filesystem();
         try{
-            $fs->copy($sourcePath,$targetPath,$override);
+            $this->filesystem->copy($sourcePath,$targetPath,$override);
         }catch(IOException $ex){
             // copy has failed
             return false;
@@ -66,8 +75,7 @@ abstract class BaseCommand extends Command
      */
     public function exists($files)
     {
-        $fs = new Filesystem();
-        return $fs->exists($files);
+        return $this->filesystem->exists($files);
     }
 
     /**
@@ -99,5 +107,36 @@ abstract class BaseCommand extends Command
         echo ! empty($matches[0]) ? 'installed' : 'nope';
     }
 
+    /**
+     * Get user home path
+     *
+     * @return string
+     */
+    public function getUserHomePath()
+    {
+        return getenv("HOME");
+    }
+
+    /**
+     * Create a directory
+     *
+     * @param string $path Full directory path
+     *
+     * @return bool
+     */
+    public function createDirectory($path)
+    {
+        try{
+            $this->filesystem->mkdir($path);
+        }catch(IOException $ex){
+            return false; //failure
+        }
+        return true;
+    }
+
+    public function appendTextToFile($text,$path)
+    {
+
+    }
 
 }
