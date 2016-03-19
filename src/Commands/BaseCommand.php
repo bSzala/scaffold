@@ -18,10 +18,9 @@ use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 abstract class BaseCommand extends Command
 {
 
-    
-    public function __constructor()
+    public function __constructor($name=null)
     {
-        parent::__construct();
+        parent::__construct($name);
     }
     /**
      * Mirror Files
@@ -36,10 +35,18 @@ abstract class BaseCommand extends Command
      */
     protected function mirror($sourcePath, $targetPath,$override=false)
     {
-        (new Filesystem())->mirror($sourcePath,$targetPath,null,['override' => $override]);
+        $this->getFilesystem()->mirror($sourcePath,$targetPath,null,['override' => $override]);
     }
 
-
+    /**
+     * Get filesystem
+     *
+     * @return Filesystem
+     */
+    protected function getFilesystem()
+    {
+        return new Filesystem();
+    }
     /**
      * Copy all files form given directory into another one
      *
@@ -51,7 +58,7 @@ abstract class BaseCommand extends Command
     protected function copy($sourcePath, $targetPath, $override = false)
     {
         try{
-            (new Filesystem())->copy($sourcePath,$targetPath,$override);
+            $this->getFilesystem()->copy($sourcePath,$targetPath,$override);
         }catch(IOException $ex){
             // copy has failed
             return false;
@@ -69,7 +76,7 @@ abstract class BaseCommand extends Command
      */
     public function exists($files)
     {
-        return (new Filesystem())->exists($files);
+        return $this->getFilesystem()->exists($files);
     }
 
     /**
@@ -121,7 +128,7 @@ abstract class BaseCommand extends Command
     public function createDirectory($path)
     {
         try{
-            (new Filesystem())->mkdir($path);
+            $this->getFilesystem()->mkdir($path);
         }catch(IOException $ex){
             return false; //failure
         }
