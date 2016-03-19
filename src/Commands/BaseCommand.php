@@ -18,16 +18,10 @@ use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 abstract class BaseCommand extends Command
 {
 
-    /**
-     * Filesystem 
-     * 
-     * @var Filesystem
-     */
-    protected $filesystem;
     
     public function __constructor()
     {
-        $this->filesystem=new Filesystem();
+        parent::__construct();
     }
     /**
      * Mirror Files
@@ -42,7 +36,7 @@ abstract class BaseCommand extends Command
      */
     protected function mirror($sourcePath, $targetPath,$override=false)
     {
-        $this->filesystem->mirror($sourcePath,$targetPath,null,['override' => $override]);
+        (new Filesystem())->mirror($sourcePath,$targetPath,null,['override' => $override]);
     }
 
 
@@ -57,7 +51,7 @@ abstract class BaseCommand extends Command
     protected function copy($sourcePath, $targetPath, $override = false)
     {
         try{
-            $this->filesystem->copy($sourcePath,$targetPath,$override);
+            (new Filesystem())->copy($sourcePath,$targetPath,$override);
         }catch(IOException $ex){
             // copy has failed
             return false;
@@ -75,7 +69,7 @@ abstract class BaseCommand extends Command
      */
     public function exists($files)
     {
-        return $this->filesystem->exists($files);
+        return (new Filesystem())->exists($files);
     }
 
     /**
@@ -127,7 +121,7 @@ abstract class BaseCommand extends Command
     public function createDirectory($path)
     {
         try{
-            $this->filesystem->mkdir($path);
+            (new Filesystem())->mkdir($path);
         }catch(IOException $ex){
             return false; //failure
         }
