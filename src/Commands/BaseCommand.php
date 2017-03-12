@@ -79,13 +79,6 @@ abstract class BaseCommand extends Command
         return $this->getFilesystem()->exists($files);
     }
 
-    /**
-     * Install vim plugins from command line
-     */
-    protected function installVimPlugins()
-    {
-        exec('vim +PluginInstall +qall');
-    }
 
     /**
      * Checks if git is installed
@@ -135,9 +128,5 @@ abstract class BaseCommand extends Command
         return true;
     }
 
-    public function appendTextToFile($text,$path)
-    {
-
-    }
 
 }
