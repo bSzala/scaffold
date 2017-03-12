@@ -35,8 +35,6 @@ class PathHelperTest extends \Codeception\TestCase\Test
         return [
             [PathHelper::getBasePath(),'Base Path'],
             [PathHelper::getTemplatesPath(),'Template Path'],
-            [PathHelper::getAliasesPath(),'Aliases Path'],
-            [PathHelper::getGeneralAliasesPath(),'General Aliases Path']
         ];
     }
 
