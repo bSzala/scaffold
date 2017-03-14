@@ -23,13 +23,12 @@
     },
     "require": {
         "php": ">=5.5.9",
-        "symfony/console": "^2.7",
-        "symfony/finder": "^3.0",
-        "symfony/filesystem": "^3.0"
+        "symfony/finder": "^3.2",
+        "symfony/filesystem": "^3.2",
+        "symfony/console": "^3.2"
     },
     "require-dev": {
-        "codeception/codeception": "^2.1",
-        "ofbeaton/console-tester": "^1.1",
+        "codeception/codeception": "^2.2",
         "mockery/mockery": "^0.9.4"
     },
     "bin": [

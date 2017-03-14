@@ -2,9 +2,6 @@
 use Codeception\Configuration;
 use Codeception\Util\Debug;
 use BSzala\Scaffold\Commands\TemplateCommand;
-use Ofbeaton\Console\Tester\QuestionTester;
-use Ofbeaton\Console\Tester\UnhandledQuestionException;
-use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -15,7 +12,6 @@ use Symfony\Component\Finder\Finder;
  */
 class TemplateCommandTest extends \Codeception\TestCase\Test
 {
-    use QuestionTester;
     /**
      * @var \UnitTester
      */
@@ -84,17 +80,11 @@ class TemplateCommandTest extends \Codeception\TestCase\Test
 
         Debug::debug('<info>Preparing question helper...</info>');
 
-        $this->mockQuestionHelper($command,function($test,$order, Question $question){
-            // Pick the first choice
-            if($order == 0){
-                return true;
-            }
-            throw new UnhandledQuestionException();
-        });
 
         Debug::debug('<info>Executing...</info>');
 
         $tester=new \Symfony\Component\Console\Tester\CommandTester($command);
+        $tester->setInputs([0]);
         $tester->execute([
            TemplateCommand::ARGUMENT_PATH_NAME => $target
         ]);
